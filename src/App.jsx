@@ -3,7 +3,7 @@ import Card from "./components/Card";
 
 function App() {
   return (
-    <div>
+    <div class="container m-auto">
       <header>
         <h1>Merch</h1>
       </header>

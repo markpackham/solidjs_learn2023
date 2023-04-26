@@ -5,6 +5,7 @@ export default function Card() {
       <p>
         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Libero, totam!
       </p>
+      <butto class="btn">Click Me</butto>
     </div>
   );
 }
