@@ -1,10 +1,23 @@
+import { createSignal } from "solid-js";
 import banner from "./assets/banner.png";
 import Card from "./components/Card";
 
 function App() {
+  const [darkTheme, setDarkTheme] = createSignal(false);
+
+  function toggleTheme() {
+    setDarkTheme(!darkTheme());
+  }
+
   return (
     <div class="container m-auto">
       <header>
+        <span
+          class="material-symbols-outlined cursor-pointer"
+          onClick={toggleTheme}
+        >
+          light_mode
+        </span>
         <h1>Ninja Merch</h1>
       </header>
 
