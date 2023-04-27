@@ -1,17 +1,17 @@
 import { Show, createResource } from "solid-js";
 import Card from "../components/Card";
 
-export default function Home() {
-  const fetchProducts = async () => {
-    const response = await fetch("http://localhost:4000/products");
-    const data = await response.json();
-    return data;
-  };
+const fetchProducts = async () => {
+  const response = await fetch("http://localhost:4000/products");
+  const data = await response.json();
+  return data;
+};
 
+export default function Home() {
   const [products] = createResource(fetchProducts);
 
   return (
-    <Show where={products()} fallback={<p>Loading...</p>}>
+    <Show when={products()} fallback={<p>Loading...</p>}>
       <div class="grid grid-cols-4 gap-10 my-4">
         <For each={products()}>
           {(product) => (
