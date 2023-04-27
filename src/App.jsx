@@ -1,5 +1,5 @@
 import { createSignal } from "solid-js";
-import { Routes, Route } from "@solidjs/router";
+import { Routes, Route, A } from "@solidjs/router";
 import banner from "./assets/banner.png";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
@@ -24,6 +24,9 @@ function App() {
           light_mode
         </span>
         <h1>Ninja Merch</h1>
+
+        <A href="/">Home</A>
+        <A href="/cart">Cart</A>
       </header>
 
       <img class="rounded-md" src={banner} alt="site banner" />
