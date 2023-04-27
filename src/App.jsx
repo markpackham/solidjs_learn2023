@@ -1,7 +1,7 @@
-import { Routes, Route } from "react-router-dom";
 import { createSignal } from "solid-js";
+import { Routes, Route } from "@solidjs/router";
 import banner from "./assets/banner.png";
-import Card from "./components/Card";
+import Home from "./pages/Home";
 
 function App() {
   const [darkTheme, setDarkTheme] = createSignal(false);
