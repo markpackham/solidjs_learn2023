@@ -4,6 +4,7 @@ import banner from "./assets/banner.png";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 import Product from "./pages/Product";
+import { useCartContext } from "./context/CartContext";
 
 function App() {
   const [darkTheme, setDarkTheme] = createSignal(false);
@@ -11,6 +12,16 @@ function App() {
   function toggleTheme() {
     setDarkTheme(!darkTheme());
   }
+
+  const { items } = useCartContext();
+
+  // count how many items are in our cart
+  const quantity = () => {
+    return items.reduce((accumulator, current) => {
+      return accumulator + current.quantity;
+      // accumulator starts at 0
+    }, 0);
+  };
 
   return (
     <div class="container m-auto">
@@ -27,7 +38,7 @@ function App() {
         <h1>Ninja Merch</h1>
 
         <A href="/">Home</A>
-        <A href="/cart">Cart</A>
+        <A href="/cart">Cart ()</A>
       </header>
 
       <img class="rounded-md" src={banner} alt="site banner" />
