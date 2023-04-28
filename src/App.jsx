@@ -38,7 +38,7 @@ function App() {
         <h1>Ninja Merch</h1>
 
         <A href="/">Home</A>
-        <A href="/cart">Cart ()</A>
+        <A href="/cart">Cart ({quantity()})</A>
       </header>
 
       <img class="rounded-md" src={banner} alt="site banner" />
