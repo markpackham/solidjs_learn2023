@@ -18,6 +18,20 @@ export default function Product() {
   const addProduct = () => {
     //check if product exists
     const exists = items.find((p) => p.id === product().id);
+
+    if (exists) {
+      // increase quantity of product
+      setItems(
+        (p) => p.id === product().id,
+        "quantity",
+        (q) => q + 1
+      );
+    }
+
+    if (!exists) {
+      // add the new product
+      setItems([...items, { ...product(), quantity: 1 }]);
+    }
   };
 
   return (
