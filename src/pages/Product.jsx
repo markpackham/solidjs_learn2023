@@ -16,6 +16,7 @@ export default function Product() {
   const { items, setItems } = useCartContext();
 
   const [adding, setAdding] = createSignal(false);
+  const [removing, setRemoving] = createSignal(false);
 
   const addProduct = () => {
     // used to say when we send a message of product added to the cart
@@ -40,6 +41,11 @@ export default function Product() {
     }
   };
 
+  const removeProduct = () => {
+    setRemoving(true);
+    setTimeout(() => setRemoving(false), 2000);
+  };
+
   return (
     <div class="my-7">
       <Show when={product()} fallback={<p>Loading product...</p>}>
@@ -57,9 +63,23 @@ export default function Product() {
               Add to Cart
             </button>
 
+            <button
+              class="bg-red-600 py-2 px-3 my-2 mx-2 inline-block text-white rounded-md border-2 border-red-600"
+              onClick={removeProduct}
+              disabled={removing()}
+            >
+              Remove from Cart
+            </button>
+
             <Show when={adding()}>
               <div className="m-2 p-2 border-amber-500 border-2 rounded-md inline-block">
-                {product().title} was aded to cart!
+                {product().title} was added to cart!
+              </div>
+            </Show>
+
+            <Show when={removing()}>
+              <div className="m-2 p-2 border-red-500 border-2 rounded-md inline-block">
+                {product().title} was removed from cart!
               </div>
             </Show>
           </div>
