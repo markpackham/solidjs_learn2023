@@ -44,6 +44,18 @@ export default function Product() {
   const removeProduct = () => {
     setRemoving(true);
     setTimeout(() => setRemoving(false), 2000);
+
+    //check if product exists
+    const exists = items.find((p) => p.id === product().id);
+
+    if (exists) {
+      // decrease quantity of product
+      setItems(
+        (p) => p.id === product().id,
+        "quantity",
+        (q) => q - 1
+      );
+    }
   };
 
   return (
