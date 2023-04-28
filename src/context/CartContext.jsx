@@ -1,9 +1,9 @@
 import { createContext, useContext } from "solid-js";
 import { createStore } from "solid-js/store";
 
-const CartContext = createContext();
+export const CartContext = createContext();
 
-function CartContextProvider(props) {
+export function CartContextProvider(props) {
   const [items, setItems] = createStore([]);
 
   return (

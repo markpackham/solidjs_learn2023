@@ -4,6 +4,7 @@ import { render } from "solid-js/web";
 import "./index.css";
 import App from "./App";
 import { Router } from "@solidjs/router";
+import { CartContextProvider } from "./context/CartContext";
 
 const root = document.getElementById("root");
 
@@ -16,7 +17,9 @@ if (import.meta.env.DEV && !(root instanceof HTMLElement)) {
 render(
   () => (
     <Router>
-      <App />
+      <CartContextProvider>
+        <App />
+      </CartContextProvider>
     </Router>
   ),
   root
