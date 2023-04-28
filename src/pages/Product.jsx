@@ -15,7 +15,10 @@ export default function Product() {
 
   const { items, setItems } = useCartContext();
 
-  const addProduct = () => {};
+  const addProduct = () => {
+    //check if product exists
+    const exists = items.find((p) => p.id === product().id);
+  };
 
   return (
     <div class="my-7">
