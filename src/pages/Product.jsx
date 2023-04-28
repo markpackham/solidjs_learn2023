@@ -1,5 +1,6 @@
 import { useParams } from "@solidjs/router";
 import { Show, createResource } from "solid-js";
+import { useCartContext } from "../context/CartContext";
 
 const fetchProduct = async (id) => {
   const response = await fetch(`http://localhost:4000/products/${id}`);
@@ -11,6 +12,10 @@ export default function Product() {
   const params = useParams();
 
   const [product] = createResource(params.id, fetchProduct);
+
+  const { items, setItems } = useCartContext();
+
+  const addProduct = () => {};
 
   return (
     <div class="my-7">
@@ -24,6 +29,9 @@ export default function Product() {
             <h2 class="text-3xl font-bold mb-7">{product().title}</h2>
             <p>{product().description}</p>
             <p class="my-7 text-2xl">Only £{product().price}</p>
+            <button class="btn" onClick={addProduct}>
+              Add to Cart
+            </button>
           </div>
         </div>
       </Show>
