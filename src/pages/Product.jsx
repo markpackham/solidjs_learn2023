@@ -18,6 +18,12 @@ export default function Product() {
   const [adding, setAdding] = createSignal(false);
   const [removing, setRemoving] = createSignal(false);
 
+  const quantity = () => {
+    return items.reduce((accumulator, current) => {
+      return accumulator + current.quantity;
+    }, 0);
+  };
+
   const addProduct = () => {
     // used to say when we send a message of product added to the cart
     setAdding(true);
@@ -70,18 +76,23 @@ export default function Product() {
             <h2 class="text-3xl font-bold mb-7">{product().title}</h2>
             <p>{product().description}</p>
             <p class="my-7 text-2xl">Only £{product().price}</p>
-            {/* prevent user spamming button by temporarily disabling it after product added */}
-            <button class="btn" onClick={addProduct} disabled={adding()}>
-              Add to Cart
-            </button>
 
-            <button
-              class="bg-red-600 py-2 px-3 my-2 mx-2 inline-block text-white rounded-md border-2 border-red-600"
-              onClick={removeProduct}
-              disabled={removing()}
-            >
-              Remove from Cart
-            </button>
+            <Show when={!adding()}>
+              {/* prevent user spamming button by temporarily disabling it after product added */}
+              <button class="btn" onClick={addProduct} disabled={adding()}>
+                Add to Cart
+              </button>
+            </Show>
+
+            <Show when={quantity() > 0 && !removing()}>
+              <button
+                class="bg-red-600 py-2 px-3 my-2 mx-2 inline-block text-white rounded-md border-2 border-red-600"
+                onClick={removeProduct}
+                disabled={removing()}
+              >
+                Remove from Cart {quantity()}
+              </button>
+            </Show>
 
             <Show when={adding()}>
               <div className="m-2 p-2 border-amber-500 border-2 rounded-md inline-block">
